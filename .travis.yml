@@ -1,0 +1,26 @@
+---
+
+language: go
+sudo: false
+dist: trusty
+
+go:
+  - "1.9.x"
+  - "1.10.x"
+  - master
+
+before_script: make prepare
+
+script:
+  - make all
+  - make lint
+  - make critic
+  - make test
+
+cache:
+  directories:
+    - vendor
+
+matrix:
+  allow_failures:
+    - go: master
